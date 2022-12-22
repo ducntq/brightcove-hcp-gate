@@ -5,20 +5,23 @@ videojs.getAllPlayers().forEach((player) => {
 		// Get a reference to the player when it is ready
 		myPlayer = this;
 		// Add the class which hides the player controls and the big play button
-		myPlayer.addClass("video-gatekeeper");
-		var overlay = document.getElementsByClassName("vjs-overlay");
-		overlay.item(0).style.width = "100%";
-		overlay.item(0).style.height = "100%";
-		overlay.item(0).style.color = "#333333";
-		overlay.item(0).style.background = "#ffffff";
-		overlay.item(0).style.left = 0;
-		overlay.item(0).style.top = 0;
-		overlay.item(0).style.opacity = "0.7";
-		overlay.item(0).style.fontSize = "26px";
+		var gatekeeper = document.createElement('div');
+		gatekeeper.classList.add('vjs-overlay');
+		gatekeeper.style.width = "100%";
+		gatekeeper.style.height = "100%";
+		gatekeeper.style.color = "#333333";
+		gatekeeper.style.background = "#ffffff";
+		gatekeeper.style.left = 0;
+		gatekeeper.style.top = 0;
+		gatekeeper.style.opacity = "0.7";
+		gatekeeper.style.fontSize = "26px";
+		myPlayer.prepend(gatekeeper);
 
 		// +++ Set up listening for when the user clicks the age verification text +++
 		// Listen for when the player has initial duration and dimension information
+		console.log('running');
 		myPlayer.on("loadedmetadata", function() {
+			/*
 			// Get a reference to the age verification text in the overlay
 			eAgeGateButton = document.getElementById("ageGateButton");
 			eAgeGateButton.innerHTML = 'By clicking the button, you certify that you are a certified HCP.';
@@ -30,6 +33,7 @@ videojs.getAllPlayers().forEach((player) => {
 				// Start video playback
 				myPlayer.play();
 			});
+			*/
 		});
 	});
 });
